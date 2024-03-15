@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import loginimg from '../Images/login2.png'
-import './signup.css'
+// import './signup.css'
 import OAuth from '../components/OAuth';
 
 export default function Signup() {

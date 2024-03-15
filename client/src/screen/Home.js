@@ -162,12 +162,12 @@ export default function Home() {
                 ? cat.map(catdata => {
                   return (
                     <div className='row' >
-                      <div key={catdata._id} className='m-3'>
+                      <div onClick={() => navigate('/'+catdata._id)} key={catdata._id} className='m-3'>
                         <div className='d-flex justify-content-center align-items-center rounded-circle col'>
                           <img src={catdata.image} className='rounded-circle' alt='...' style={{ height: "150px", width: "150px" }} />
                         </div>
                         <div className='d-flex justify-content-center align-items-center fs-4 fw-bold'>
-                          <Link to={"/" + catdata._id} style={{ textDecoration: "none", color: "#193046" }}>{catdata.categoryname}</Link>
+                          <p  style={{ textDecoration: "none", color: "#193046" }}>{catdata.categoryname}</p>
                         </div>
                         {/* <div onClick={() => {
                         navigate('/' + catdata._id)

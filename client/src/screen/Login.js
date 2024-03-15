@@ -34,8 +34,8 @@ export default function Login() {
       } else if (!response.ok) {
         throw new Error('Login failed');
       } else {
-        const UserEmail = credentials.email;
-        console.log(UserEmail);
+        const isAdmin = json.isAdmin;
+        localStorage.setItem("isAdmin",isAdmin)
         localStorage.setItem("authToken", json.authToken);
         alert("Login Successful");
         navigate("/home");

@@ -9,6 +9,7 @@ const UserSchema = new Schema({
     email: {
         type: String,
         required: true,
+        unique: true
     },
     password: {
         type: String,
@@ -41,11 +42,17 @@ const UserSchema = new Schema({
                 type: Number,
                 multipleOf: 0.01,
             },
-            image:{
-                type:String
+            image: {
+                type: String
             }
         }]
+    },
+    isAdmin: {
+        type: Boolean,
+        default: false
     }
-})
+},
+    { timestamps: true }
+)
 
 module.exports = mongoose.model('Useranddata', UserSchema)

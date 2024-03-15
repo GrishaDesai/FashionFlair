@@ -7,8 +7,9 @@ const cook = require("cookie-parser");
 const jwt = require('jsonwebtoken')
 // const { wait } = require('@testing-library/user-event/dist/utils')
 // const { json } = require('react-router-dom')
-const jwtSecret = "grishaisthegreateilove myselfthemost"
 
+
+jwtSecret = process.env.jwtSecret;
 
 // Middleware to verify JWT token
 const verifyToken = async (req, res, next) => {
@@ -99,7 +100,7 @@ router.post("/loginuser", async (req, res) => {
             // path: '/',
         });
 
-        return res.json({ success: true, authToken: authToken });
+        return res.json({ success: true, authToken: authToken, isAdmin:user.isAdmin });
     } catch (error) {
         console.error("Error setting cookie:", error);
         return res.status(500).json({ error: 'Internal server error' });

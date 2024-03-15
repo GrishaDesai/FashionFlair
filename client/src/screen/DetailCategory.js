@@ -34,20 +34,18 @@ function DetailCategory() {
         <>
             <Navbar />
             <NavDetail />
-            <div className="row d-flex justify-content-center w-100">
-                <div className="fontstyle" style={{ marginTop: "130px" }}>
+            <div className="Container w-100" style={{ marginTop: "130px" }}>
+                <div className="fontstyle row ms-2" >
                     {
                         maindata != []
                             ? maindata.filter(f => (f.category === Data.categoryname))
                                 .map((data) => {
                                     return (
-                                        // <Card items={data} />
-                                        <div className='m-4 allcard' style={{ width: "20rem", height: "80vh", float: "left" }}>
-                                            <img src={data.image} className="card-img-top" alt='....' style={{ height: "60vh", objectFit: "fill" }} />
+                                        <div onClick={() => navigate('/' + Data._id + '/' + data._id)} className='m-4 allcard col-2' style={{ height: "80vh" }}>
+                                            <img src={data.image} className="card-img-top" alt='....' style={{ height: "60vh", objectFit: "cover" }} />
                                             <div className='m-2'>
                                                 <h5>{data.company_name}</h5>
-                                                {/* change  h1 to link*/}
-                                                <Link to={"/" + Data._id + "/" + data._id} style={{ color: "#43505c" }}>{data.name}</Link>
+                                                <p style={{ color: "#43505c" }}>{data.name}</p>
                                                 <br />
                                                 <div className='me-2' style={{ float: "left" }}><h6><i class="fa fa-inr" aria-hidden="true"></i>{data.price}</h6></div>
                                                 <div style={{ float: "left", color: "#43505c", textDecoration: "line-through" }}><h6><i class="fa fa-inr" aria-hidden="true"></i>{data.sale_price}</h6></div>

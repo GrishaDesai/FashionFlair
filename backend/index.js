@@ -1,6 +1,5 @@
 const express = require('express');
 const app = express();
-const port = 5000;
 const mongoose = require('mongoose');
 const dotenv = require('dotenv')
 const cookieParser = require('cookie-parser')
@@ -27,7 +26,7 @@ app.use(cookieParser());
 // });
 
 const mongoURI = process.env.MongoUrl;
-console.log(mongoURI);
+const PORT = process.env.PORT;
 
 // mongoose.connect(mongoURI)
 //     .then(() => {
@@ -115,7 +114,8 @@ app.use('/api', require("./Routes/CreateTestimonial"))
 app.use('/api', require("./Routes/detailcategory"))
 app.use('/api', require("./Routes/oneItem"))
 app.use('/api', require("./Routes/Google")) 
+app.use('/api', require("./Routes/adminRoutes"))
 
-app.listen(port, () => {
-    console.log(`app listening on port ${port}`)
+app.listen(PORT, () => {
+    console.log(`app listening on port ${PORT}`)
 })
