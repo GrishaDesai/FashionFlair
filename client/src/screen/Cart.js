@@ -17,11 +17,11 @@ export default function Cart() {
 
   const objectId = Data._id;
   const cartitems = Data.cartitems;
-
+  const userEmail = localStorage.getItem("email")
 
   useEffect(() => {
     const fetchedData = async () => {
-      let response = await fetch(`http://localhost:5000/api/getUsers`, {
+      let response = await fetch(`http://localhost:5000/api/getUsers/${userEmail}`, {
         method: "GET",
         headers: {
           'Content-Type': 'application/json'
@@ -48,6 +48,7 @@ export default function Cart() {
 
       const data = await response.json();
       console.log(data);
+      window.location.reload();
     } catch (error) {
       console.error('Error:', error);
       // setMessage('Internal server error');
@@ -61,6 +62,24 @@ export default function Cart() {
   function getSalePrice(total, price) {
     return total + price.sale_price;
   }
+
+  // const demo = () => {
+  //   swal({
+  //     title: "Are you sure?",
+  //     text: "You will not be able to recover this imaginary file!",
+  //     type: "warning",
+  //     showCancelButton: true,
+  //     confirmButtonColor: '#DD6B55',
+  //     confirmButtonText: 'Yes, delete it!',
+  //     closeOnConfirm: false,
+  //     //closeOnCancel: false
+  //   },
+  //      swal = () => {
+  //       swal("Deleted!", "Your imaginary file has been deleted!", "success");
+  //     });
+  // };
+
+  
 
   return (
     <>
@@ -105,7 +124,7 @@ export default function Cart() {
             <div className='d-flex text-success' style={{ color: "#353f4f" }}>
               <div className='w-50'><h5>Total Discounts : </h5></div>
               <div className='w-50' style={{ textAlign: "right" }}><h5><i class="fa fa-minus me-2" aria-hidden="true"></i><i class="fa fa-inr me-1" aria-hidden="true"></i>{
-                Data.cartitems.reduce(getSalePrice, 0) - Data.cartitems.reduce(getPrice, 0)
+                Data.cartitems.reduce(getPrice, 0) - Data.cartitems.reduce(getSalePrice, 0)
               }</h5></div>
             </div>
             <div className='d-flex' style={{ color: "#353f4f" }}>
@@ -128,7 +147,7 @@ export default function Cart() {
               <p className='' style={{ fontWeight: "normal", color: "#4b4b58" }}>Clicking on ‘Continue’ will not deduct any money</p>
             </div>
             <div className='py-2 px-4 mt-2' style={{ borderRadius: "10px", backgroundColor: "#1d4265", textAlign: "center" }}>
-              <h5 className='' style={{ fontWeight: "bold", color: "#fff" }}>Continue</h5>
+              <h5 id="bContinue"  style={{ fontWeight: "bold", color: "#fff" }}>Continue</h5>
             </div>
           </div>
         </div>

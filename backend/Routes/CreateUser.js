@@ -100,7 +100,7 @@ router.post("/loginuser", async (req, res) => {
             // path: '/',
         });
 
-        return res.json({ success: true, authToken: authToken, isAdmin:user.isAdmin });
+        return res.json({ success: true, authToken: authToken, isAdmin:user.isAdmin, email:user.email });
     } catch (error) {
         console.error("Error setting cookie:", error);
         return res.status(500).json({ error: 'Internal server error' });
@@ -108,12 +108,12 @@ router.post("/loginuser", async (req, res) => {
 });
 
 
-router.patch('/addtocart', async (req, res) => {
+router.patch('/addtocart/:email', async (req, res) => {
     try {
-        const username = 'naruto';
+        const username = req.params.email;
         const { category, name, company_name, price, sale_price, image } = req.body;
         // Find the user by ID
-        const user = await User.findOne({ name: username });
+        const user = await User.findOne({ email: username });
 
         if (!user) {
             return res.status(404).json({ error: 'User not found' });
@@ -139,10 +139,11 @@ router.patch('/addtocart', async (req, res) => {
     }
 })
 
-router.get('/getUsers', async (req, res) => {
+router.get('/getUsers/:userEmail', async (req, res) => {
     try {
-        const username = 'naruto';
-        const user = await User.findOne({ name: username });
+        const username = req.params.userEmail;
+        console.log(username);
+        const user = await User.findOne({ email: username });
         // console.log(user);
         res.send(user)
     } catch (error) {

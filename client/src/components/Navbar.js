@@ -52,6 +52,7 @@ export default function Navbar() {
                 <div onClick={() => {
                   localStorage.removeItem("authToken");
                   localStorage.removeItem("isAdmin");
+                  localStorage.removeItem("email");
                   navigate("/home")
                 }}><i class="fa fa-sign-out fs-3 mx-3" aria-hidden="true" style={{ fontWeight: "bold", color: "#1D4265" }}></i></div>
               </div>

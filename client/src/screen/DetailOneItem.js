@@ -35,7 +35,8 @@ function DetailCategory() {
 
     const handleAddToCart = async (e) => {
         e.preventDefault();
-        const response = await fetch("http://localhost:5000/api/addtocart", {
+        const email = localStorage.getItem("email");
+        const response = await fetch(`http://localhost:5000/api/addtocart/${email}`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json'

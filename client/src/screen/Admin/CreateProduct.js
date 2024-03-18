@@ -17,6 +17,11 @@ export default function CreateProduct() {
     console.log(response[0]);
   }
 
+  const setCat = (value) => {
+    const cat = document.getElementById('cat');
+    cat.textContent = value;
+  }
+
   useEffect(() => {
     fetchedData();
   }, [])
@@ -44,9 +49,9 @@ export default function CreateProduct() {
             <div className='col'>
               <label className='addProductlable'>Category: </label>
               <div class="dropdown">
-                <span>Category</span>
+                <span id='cat'>Category</span>
                 <div class="dropdown-content">
-                  {category.map((m) => <p>{m.categoryname}</p>)}
+                  {category.map((m) => <p onClick={() => setCat(m.categoryname)}>{m.categoryname}</p>)}
                 </div>
               </div>
             </div>

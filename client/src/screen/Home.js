@@ -124,219 +124,60 @@ export default function Home() {
         </div>
 
         {/* carousel */}
-        <div className='carouselcustom carousel w-100' style={{ marginTop: "90px", width: "100%" }} data-ride="carousel">
-          <div id="carouselExampleCaptions" className="carousel slide" style={{ objectFit: "contain !important" }}>
-            <div className="carousel-inner">
-              <div className="carousel-item active w-100">
-                <img src={cpage1} className="d-block w-100" alt="..." style={{ height: "60vh" }} />
-              </div>
-              <div className="carousel-item">
-                <img src={cpage2} className="d-block w-100" alt="..." style={{ height: "60vh" }} />
-              </div>
-              <div className="carousel-item">
-                <img src={page3} className="d-block w-100" alt="..." style={{ height: "60vh" }} />
-              </div>
-              <div className="carousel-item">
-                <img src={page4} className="d-block w-100" alt="..." style={{ height: "60vh" }} />
-              </div>
-              <div className="carousel-item">
-                <img src={page5} className="d-block w-100" alt="..." style={{ height: "60vh" }} />
-              </div>
+        <div id="carouselExample" class="carousel slide" style={{ marginTop: "100px" }}>
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img src={cpage1} class="d-block w-100" alt="..." style={{ height: "60vh" }} />
             </div>
-            <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
-              <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-              <span className="visually-hidden">Previous</span>
-            </button>
-            <button className="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
-              <span className="carousel-control-next-icon" aria-hidden="true"></span>
-              <span className="visually-hidden">Next</span>
-            </button>
+            <div class="carousel-item">
+              <img src={cpage2} class="d-block w-100" alt="..." style={{ height: "60vh" }} />
+            </div>
+            <div class="carousel-item">
+              <img src={page3} class="d-block w-100" alt="..." style={{ height: "60vh" }} />
+            </div>
           </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
         </div>
 
-        {/* catagory scrollmenu */}
-        <div className='mx-3 mt-3 mb-5' id='product'>
-          <div className='scrollmenu' >
-            {
-              cat != []
-                ? cat.map(catdata => {
-                  return (
-                    <div className='row' >
-                      <div onClick={() => navigate('/'+catdata._id)} key={catdata._id} className='m-3'>
-                        <div className='d-flex justify-content-center align-items-center rounded-circle col'>
-                          <img src={catdata.image} className='rounded-circle' alt='...' style={{ height: "150px", width: "150px" }} />
-                        </div>
-                        <div className='d-flex justify-content-center align-items-center fs-4 fw-bold'>
-                          <p  style={{ textDecoration: "none", color: "#193046" }}>{catdata.categoryname}</p>
-                        </div>
-                        {/* <div onClick={() => {
-                        navigate('/' + catdata._id)
-                        // <Link to={DetailCategory}></Link>
-                      }}>
-                        {catdata.categoryname}
-                      </div> */}
 
+        {/* Category Scrollmenu */}
+        <div className='scrollmenu'>
+          {
+            cat != []
+              ? cat.map(catdata => {
+                return (
+                  <div className='col' >
+                    <div onClick={() => navigate('/' + catdata._id)} key={catdata._id} className='m-3'>
+                      <div className='d-flex justify-content-center align-items-center rounded-circle col'>
+                        <img src={catdata.image} className='rounded-circle' alt='...' style={{ height: "150px", width: "150px" }} />
                       </div>
-                      {/* {item !== []
-                    ? item.filter((f) => (f.category === catdata.categoryname) && (f.name.toLowerCase().includes(search.toLowerCase())))
-                      .map((data) => {
-                        return (
-                          <div key={data._id} className='col-12 col-md-6 col-lg-4 my-2'> <Card fashion={data}></Card></div>
-                        )
-                      })
-                    : <div>'''''''''</div>} */}
+                      <div className='d-flex justify-content-center align-items-center fs-4 fw-bold'>
+                        <p style={{ textDecoration: "none", color: "#193046" }}>{catdata.categoryname}</p>
+                      </div>
                     </div>
-                  )
-                }) : <div>'''''''</div>
-
-            }
-          </div>
-        </div >
-
-        {/* About Us */}
-        <div className='mb-5' style={{ width: "100%" }} id='aboutus'>
-          <div className='col mb-5' style={{ borderRight: "3px solid #15385A", borderTop: "3px solid #15385A", borderBottom: "3px solid #15385A", borderRadius: "0px 100px 0px 0px", marginRight: "100px", height: "350px", width: "1200px", float: "left" }}>
-            <div style={{ float: "left", width: "800px" }}>
-              <h1 className='m-3' style={{ textAlign: "center", fontWeight: "bold", color: "#193046", letterSpacing: "1px", }}>About Us</h1>
-              <h4 className='mb-3 mx-5 ps-5' style={{ letterSpacing: "1px", wordSpacing: "2px" }}><span style={{ fontWeight: "bold" }}>THE FASHION STORE</span> caters to thoughtful shoppers who appreciate unique designs and top quality pieces you just can't find anywhere else.
-                We are constantly curating fresh new collections and looking for the next big thing our customers will love. Founded in Vienna in 2019,
-                we are proud to be your <span style={{ fontWeight: "bold" }}> Online Clothing Shop </span> that you can rely on for our expert service and care.
-              </h4>
-            </div>
-          </div>
-          <div className='d-flex justify-content-end ms-auto' style={{ zIndex: "999", }}>
-            <img src={about1} className='mt-5 me-3' alt='...' style={{ height: "350px", width: "500px", borderRadius: "2px 100px" }} />
-          </div>
+                  </div>
+                )
+              }) : <div>'''''''</div>
+          }
         </div>
 
-        <div>
-          <div className='mb-5' style={{ float: "left" }}>
-            <img src={about2} className='mt-5 me-3' alt='...' style={{ height: "350px", width: "500px", borderRadius: "2px 100px" }} />
-          </div>
-          <div className='col mb-5' style={{ border: "3px solid #15385A", height: "350px", width: "1225px", marginLeft: "300px", borderRadius: "100px 0px 0px 0px" }}>
-            <div style={{ zIndex: 999 }} >
-              <h1 className='mt-3' style={{ textAlign: "center", fontWeight: "bold", color: "#193046", letterSpacing: "1px", }}>Our Mission</h1>
-              <div className='d-flex justify-content-center' style={{ height: "150px" }}><img src={as1} alt='...' /></div>
-              <h4 className='mb-3' style={{ letterSpacing: "1px", wordSpacing: "2px", marginLeft: "400px", marginRight: "100px" }}>
-                <span style={{ fontWeight: "bold" }}>Our Mission </span>
-                is to make a difference through our branding by staying ahead of the fashion trends,
-                defining style and giving customers what they want.
-              </h4>
-            </div>
-          </div>
-        </div>
-
-        <div className='mb-5' style={{ width: "100%" }}>
-          <div className='col mb-5' style={{ borderRight: "3px solid #15385A", borderTop: "3px solid #15385A", borderBottom: "3px solid #15385A", borderRadius: "0px 100px 0px 0px", marginRight: "100px", height: "350px", width: "1200px", float: "left" }}>
-            <div style={{ float: "left", width: "800px" }}>
-              <h1 className='mt-3' style={{ textAlign: "center", fontWeight: "bold", color: "#193046", letterSpacing: "1px", }}>Our Vision</h1>
-              <div className='d-flex justify-content-center' style={{ height: "150px" }}><img src={as2} alt='...' /></div>
-              <h4 className='mb-3 mx-5 ps-5' style={{ letterSpacing: "1px", wordSpacing: "2px" }}>
-                <span style={{ fontWeight: "bold" }}>Our Vision </span>
-                is to change the way our society connects with the fashion industry by providing
-                our customers with products that are ethically and responsibly sourced.
-              </h4>
-            </div>
-          </div>
-          <div className='d-flex justify-content-end ms-auto' style={{ zIndex: "999", }}>
-            <img src={about3} className='me-3' alt='...' style={{ height: "350px", width: "500px", borderRadius: "2px 100px", marginTop: "100px" }} />
-          </div>
-        </div>
-
+        {/* trend */}
         <div className=' w-100 trend-container'>
           <ImageSlider images={images} />
         </div>
 
+        {/* YouTube video */}
 
-        {/* Gallery */}
-        <div className='row wow fadeInUp' data-wow-delay="0.1s" id='gallery'>
-          <div className='col pt-4 px-5 col' style={{ backgroundColor: "#202f5a", borderRadius: "120px", color: "#ffffff", textAlign: "center", height: "430px", margin: "100px" }}>
-            <div className='row'>
-              <div className='col mb-3'>
-                <h1>All the <span style={{ fontWeight: "bold" }}>Newest</span> you <span style={{ fontWeight: "bold" }}>Need</span></h1>
-              </div>
-            </div>
-            <div className='row'>
-              <div className='col-4'>
-                <div className='hovergallery'>
-                  <img src={g1} alt='...' className='my-5  galleryimg ' />
-                </div>
-              </div>
-              <div className='col-4'>
-                <div className='hovergallery'>
-                  <img src={g2} alt='...' className='my-5  galleryimg ' />
-                </div>
-              </div>
-              <div className='col-4'>
-                <div className='hovergallery' >
-                  <img src={g3} alt='...' className='my-5  galleryimg ' />
-                </div>
-              </div>
-            </div>
-          </div>
-
-        </div>
-
-        {/* YouTube Videos */}
-        <div className='row' id='video'>
-          <div className='col p-5' style={{ margin: "100px", borderRadius: "50px", height: "500px", backgroundColor: "#9dc9f4" }}>
-            <div className='row'>
-              <div className='col' style={{ textAlign: 'center', }} >
-                <h5 className='fw-bold' style={{ color: "#202f5a" }}>WHAT'S GOING ON</h5>
-                <h1 style={{ color: "#202f5a" }}>Our <span className='fw-bold' > latest stories, tips </span> and <span className='fw-bold'> insights </span> on everything</h1>
-              </div>
-            </div>
-            <div className='row' style={{ marginLeft: "30px", marginRight: "30px", marginTop: "50px", marginBottom: "50px" }}>
-              <div className='col mx-3 mb-5'>
-                <div class="card videostyle" style={{ width: "21rem", borderRadius: "40px", boxShadow: "" }}>
-                  <iframe height="230" src="https://www.youtube.com/embed/dkqzlArXD5A?si=y-rtbrf3SeTQRYX2" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen className='card-img-top' style={{ borderTopLeftRadius: "20px", borderTopRightRadius: "20px" }}></iframe>
-                  <div class="card-body">
-                    <p class="card-text text-secondary"><i class="fa fa-calendar me-2" aria-hidden="true"></i>Feb 03 ,2023
-                      <span className='ms-4'></span><i class="fa fa-clock-o me-2" aria-hidden="true"></i>3 Min
-                    </p>
-                    <h5 style={{ fontWeight: "bold", marginBottom: "25px" }}>Overview of latest fashion and trends in fashion brands.</h5>
-                    <div style={{ borderBottom: "2px solid black" }}></div>
-                    <p className='fs-5 mt-2' style={{ color: "#202f5a" }}>Share:<i class="fa fa-facebook mx-3" aria-hidden="true"></i><i class="fa fa-twitter me-3" aria-hidden="true"></i><i class="fa fa-linkedin" aria-hidden="true"></i></p>
-                  </div>
-                </div>
-              </div>
-              <div className='col mx-3'>
-                <div class="card videostyle" style={{ width: "21rem", borderRadius: "40px" }}>
-                  <iframe height="230" src="https://www.youtube.com/embed/szWyuNr7OUU?si=NFZXExhslkm8qj63" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen className='card-img-top' style={{ borderTopLeftRadius: "20px", borderTopRightRadius: "20px" }}></iframe>
-                  <div class="card-body">
-                    <p class="card-text text-secondary"><i class="fa fa-calendar me-2" aria-hidden="true"></i>Feb 03 ,2023
-                      <span className='ms-4'></span><i class="fa fa-clock-o me-2" aria-hidden="true"></i>3 Min
-                    </p>
-                    <h5 style={{ fontWeight: "bold", marginBottom: "25px" }}>Overview of latest fashion and trends in fashion brands.</h5>
-                    <div style={{ borderBottom: "2px solid black" }}></div>
-                    <p className='fs-5 mt-2' style={{ color: "#202f5a" }}>Share:<i class="fa fa-facebook mx-3" aria-hidden="true"></i><i class="fa fa-twitter me-3" aria-hidden="true"></i><i class="fa fa-linkedin" aria-hidden="true"></i></p>
-                  </div>
-                </div>
-              </div>
-              <div className='col mx-3 mb-5'>
-                <div class="card videostyle" style={{ width: "21rem", borderRadius: "40px" }}>
-                  <iframe height="230" src="https://www.youtube.com/embed/Ib1EVUPnRNw?si=sbrRJYBf3YoEBSKP" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen className='card-img-top' style={{ borderTopLeftRadius: "20px", borderTopRightRadius: "20px" }}></iframe>
-                  <div class="card-body">
-                    <p class="card-text text-secondary"><i class="fa fa-calendar me-2" aria-hidden="true"></i>Feb 03 ,2023
-                      <span className='ms-4'></span><i class="fa fa-clock-o me-2" aria-hidden="true"></i>3 Min
-                    </p>
-                    <h5 style={{ fontWeight: "bold", marginBottom: "25px" }}>Overview of latest fashion and trends in fashion brands.</h5>
-                    <div style={{ borderBottom: "2px solid black" }}></div>
-                    <p className='fs-5 mt-2' style={{ color: "#202f5a" }}>Share:<i class="fa fa-facebook mx-3" aria-hidden="true"></i><i class="fa fa-twitter me-3" aria-hidden="true"></i><i class="fa fa-linkedin" aria-hidden="true"></i></p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className='row'>
-
-          </div>
-        </div>
-
-
-        {/* Testimonial */}
+        {/* testimonial */}
         <div className='w-100 row' style={{ marginTop: "100px" }} id='testimonial'>
-          <div style={{ color: "#202f5a", marginRight: "300px", borderLeft: "10px solid #202f5a" }} className='col m-5 ps-5'>
+          <div style={{ color: "#202f5a", marginRight: "100px", borderLeft: "10px solid #202f5a" }} className='col m-3 ps-5'>
             <h6 className='fw-bold' style={{ letterSpacing: "1px", wordSpacing: "2px" }}>OUR HAPPY CUSTOMERS</h6>
             <h1 style={{ letterSpacing: "2px", wordSpacing: "5px" }}>What our <span style={{ fontWeight: "600" }}>clients</span></h1>
             <h1 style={{ fontWeight: "600", letterSpacing: "2px", wordSpacing: "5px" }}><span>says</span> about our work</h1>
@@ -345,7 +186,6 @@ export default function Home() {
             <div id="carouselExampleControls" className="carousel slide" data-bs-ride="carousel" >
               <div class="carousel-inner px-5 py-2" style={{ height: "300px" }}>
                 <div class="carousel-item ctitem active" >
-
                   <div className='row'>
                     <div className='col d-flex' >
                       <h2 style={{ fontWeight: "bold", textAlign: "center" }} >Grisha Desai</h2>
@@ -412,6 +252,7 @@ export default function Home() {
           </div>
         </div>
 
+
         {/* Contact Us */}
         <div className='my-3 w-100' style={{ float: "right" }}>
           <ContactUs />
@@ -421,6 +262,7 @@ export default function Home() {
         <div style={{ width: "100%", float: "right" }}>
           <Footer />
         </div>
+
       </div>
     </>
   )

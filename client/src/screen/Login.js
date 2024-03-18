@@ -35,6 +35,8 @@ export default function Login() {
         throw new Error('Login failed');
       } else {
         const isAdmin = json.isAdmin;
+        const email = json.email;
+        localStorage.setItem("email",email)
         localStorage.setItem("isAdmin",isAdmin)
         localStorage.setItem("authToken", json.authToken);
         alert("Login Successful");
