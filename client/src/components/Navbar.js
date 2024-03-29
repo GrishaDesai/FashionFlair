@@ -39,7 +39,7 @@ export default function Navbar() {
               </div>
               <div>
                 <Link to='/login'>
-                  <i class='fa fa-user fs-3 mx-3' style={{ fontWeight: "bold", color: "#1D4265" }}></i>
+                  <i class='fa fa-sign-in" fs-3 mx-3' style={{ fontWeight: "bold", color: "#1D4265" }}></i>
                 </Link>
               </div>
             </div>
@@ -65,7 +65,7 @@ export default function Navbar() {
         <div class="navbar d-flex">
           <a href="/home" class="nav-item nav-link active">HOME</a>
           <a href="#product" class="nav-item nav-link active">PRODUCT</a>
-          <a href="#aboutus" class="nav-item nav-link">ABOUT</a>
+          <a href="/about" class="nav-item nav-link">ABOUT</a>
           <a href="#gallery" class="nav-item nav-link">GALLERY</a>
           <a href="#video" class="nav-item nav-link">VIDEOS</a>
           <a href="#testimonial" class="nav-item nav-link">TESTIMONIAL</a>

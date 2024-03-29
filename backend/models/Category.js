@@ -9,6 +9,13 @@ const CategorySchema = new Schema({
     image: {
         type: String,
         required: true,
+    },
+    image: {
+        type: String,
+        required: true,
+    },
+    info: {
+        type: Array
     }
 })
 

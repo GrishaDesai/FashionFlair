@@ -1,6 +1,8 @@
 import React from 'react'
 import { useNavigate, useParams } from 'react-router-dom';
 import { useEffect, useState } from "react";
+import Popup from 'reactjs-popup';
+import 'reactjs-popup/dist/index.css';
 
 export default function Cart() {
 
@@ -32,7 +34,7 @@ export default function Cart() {
       console.log(Data.cartitems);
     }
     fetchedData();
-  }, []);
+  }, {});
 
   const handleDelete = async (objectToDelete) => {
     try {
@@ -79,10 +81,14 @@ export default function Cart() {
   //     });
   // };
 
-  
 
-  return (
-    <>
+
+
+
+  if (Data.cartitems.length === 0) {
+    return (<div style={{ display: "flex", justifyContent: "center" }}>Opps! Your Cart is Empty</div>)
+  } else {
+    return (
       <div className='m-auto' style={{ width: "80%" }}>
         <div className='d-flex w-100 mt-3'>
           <h3 className='me-4 pe-4' style={{ borderRight: "1px solid #ceced5" }}>Cart</h3>
@@ -124,7 +130,7 @@ export default function Cart() {
             <div className='d-flex text-success' style={{ color: "#353f4f" }}>
               <div className='w-50'><h5>Total Discounts : </h5></div>
               <div className='w-50' style={{ textAlign: "right" }}><h5><i class="fa fa-minus me-2" aria-hidden="true"></i><i class="fa fa-inr me-1" aria-hidden="true"></i>{
-                Data.cartitems.reduce(getPrice, 0) - Data.cartitems.reduce(getSalePrice, 0)
+                Data.cartitems.reduce(getPrice, 0)
               }</h5></div>
             </div>
             <div className='d-flex' style={{ color: "#353f4f" }}>
@@ -140,18 +146,36 @@ export default function Cart() {
             </div>
             <div className='pt-2 px-4 pb-1 mt-2' style={{ borderRadius: "10px", backgroundColor: "#d3f4ea" }}>
               <h5 className='text-success' style={{ fontWeight: "bold" }}>Yay! Your total discount is <i class="fa fa-inr ms-1" aria-hidden="true"></i> {
-                Data.cartitems.reduce(getSalePrice, 0) - Data.cartitems.reduce(getPrice, 0)
+                Data.cartitems.reduce(getPrice, 0)
               } </h5>
             </div>
             <div className='pt-2 px-4 pb-1 mt-4' style={{ borderRadius: "10px", backgroundColor: "#f8f8ff", textAlign: "center" }}>
               <p className='' style={{ fontWeight: "normal", color: "#4b4b58" }}>Clicking on ‘Continue’ will not deduct any money</p>
             </div>
-            <div className='py-2 px-4 mt-2' style={{ borderRadius: "10px", backgroundColor: "#1d4265", textAlign: "center" }}>
+            {/* <div className='py-2 px-4 mt-2' style={{ borderRadius: "10px", backgroundColor: "#1d4265", textAlign: "center" }}>
               <h5 id="bContinue"  style={{ fontWeight: "bold", color: "#fff" }}>Continue</h5>
+            </div> */}
+            <div className='py-2 px-4 mt-2' style={{ borderRadius: "10px", backgroundColor: "#1d4265", textAlign: "center" }}>
+              <h5 style={{ fontWeight: "bold", color: "#fff" }} onClick={() => navigate('/address')}>Continue</h5>
+              {/* {isModalOpen && (
+                <div className=''>
+                  <div className='content'>
+                    <div>
+                      
+                    </div>
+                    <div>
+                      <button onClick={closeModal}>Close modal</button>
+                    </div>
+                  </div>
+
+                </div>
+              )} */}
             </div>
+
           </div>
         </div>
       </div>
-    </>
-  )
+    )
+  }
+
 }

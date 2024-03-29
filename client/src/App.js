@@ -16,29 +16,25 @@ import Cart from './screen/Cart'
 import About from './screen/About.js';
 import CreateCategory from './screen/Admin/CreateCategory.js';
 import CreateProduct from './screen/Admin/CreateProduct.js';
+import PrivateRoute from './components/PrivateRoute.js';
+import AdminHome from './screen/Admin/AdminHome.js';
+import GetAllCategory from './screen/Admin/GetAllCategory.js';
+import GetAllProduct from './screen/Admin/GetAllProduct.js';
+import GetAllCustomerReview from './screen/Admin/GetAllCustomerReview.js';
+import EditProduct from './screen/Admin/EditProduct.js';
+import PrivateUserRoute from './components/PrivateUserRoute.js';
+import GetUsers from './screen/Admin/GetUsers.js';
+import Address from './screen/Address.js';
 
 function App() {
-  const [isAdmin, setIsAdmin] = useState(false);
-  useEffect(() => {
-    setIsAdmin(localStorage.getItem('isAdmin'));
-    console.log(isAdmin);
-  }, [isAdmin])
   return (
     <BrowserRouter>
       <div>
         <Routes>
-          
-            {/* {isAdmin ? (
-              <>
-                <Route path='/create-category' element={<CreateCategory />} />
-                <Route path='/create-product' element={<CreateProduct />} />
-              </>
-            ) : (
-              <Route path='/cart' element={<Cart />} />
-            )} */}
-          <Route path='/create-category' element={<CreateCategory />} />
-          <Route path='/create-product' element={<CreateProduct />} />
-          <Route path='/cart' element={<Cart />} />
+          {/* <Route element={<PrivateUserRoute/>}> */}
+            <Route path='/cart' element={<Cart />} />
+          <Route path='/address' element={<Address />} />
+          {/* </Route> */}
           <Route path='/' element={<HeroSection />} />
           <Route path="/home" element={<Home />} />
           <Route path="/about" element={<About />} />
@@ -46,7 +42,16 @@ function App() {
           <Route path="/createuser" element={<Signup />} />
           <Route path='/:id' element={<DetailCategory />} />
           <Route path='/:id/:id' element={<DetailOneItem />} />
-
+          <Route element={<PrivateRoute />}>
+            <Route path='/admin-home' element={<AdminHome/>} />
+            <Route path='/admin-home/getreview' element={<GetAllCustomerReview />} />
+            <Route path='/admin-home/allcategory' element={<GetAllCategory />} />
+            <Route path='/admin-home/allproduct' element={<GetAllProduct />} />
+            <Route path='/admin-home/getUsers' element={<GetUsers />} />
+            <Route path='/create-product' element={<CreateProduct />} />
+            <Route path='/create-category' element={<CreateCategory />} />
+            <Route path='/edit-product/:productId' element={<EditProduct/>} />
+          </Route>
         </Routes>
       </div>
     </BrowserRouter>

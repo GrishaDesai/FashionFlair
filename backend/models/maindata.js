@@ -31,7 +31,6 @@ const MaindataSchema = new Schema({
     rating: {
         type: Number,
         multipleOf : 0.01,
-        required: true,
     },
     sizes:{
         type : Array,

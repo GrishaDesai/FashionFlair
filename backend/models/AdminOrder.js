@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 const { Schema } = mongoose;
 
-const UserSchema = new Schema({
+const AdminOrder = new Schema({
     name: {
         type: String,
         required: true,
@@ -10,18 +10,6 @@ const UserSchema = new Schema({
         type: String,
         required: true,
         unique: true
-    },
-    password: {
-        type: String,
-        required: true,
-    },
-    location: {
-        type: String,
-        required: true
-    },
-    date: {
-        type: Date,
-        default: Date.now
     },
     cartitems: {
         type: [{
@@ -47,31 +35,23 @@ const UserSchema = new Schema({
             }
         }]
     },
-    isAdmin: {
-        type: Boolean,
-        default: false
-    },
-    contactno:{
+    contactno: {
         type: String
     },
-    address:{
+    address: {
         type: String
     },
-    pincode:{
+    pincode: {
         type: String
     },
-    city:{
+    city: {
         type: String
     },
-    state:{
+    state: {
         type: String
-    },
-    isOrdered:{
-        type:Boolean,
-        default: false
     }
 },
     { timestamps: true }
 )
 
-module.exports = mongoose.model('Useranddata', UserSchema)
+module.exports = mongoose.model('AdminOrder', AdminOrder)

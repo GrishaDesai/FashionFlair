@@ -53,7 +53,12 @@ router.post("/createuser", [
                 email: req.body.email,
                 password: secpassword,
                 location: req.body.location,
-                cartitems: req.body.cartitems
+                cartitems: req.body.cartitems,
+                contactno: req.body.contactno,
+                address: req.body.address,
+                pincode: req.body.pincode,
+                city: req.body.city,
+                state: req.body.state
             })
             res.json({ success: true })
         } catch (error) {
@@ -100,7 +105,7 @@ router.post("/loginuser", async (req, res) => {
             // path: '/',
         });
 
-        return res.json({ success: true, authToken: authToken, isAdmin:user.isAdmin, email:user.email });
+        return res.json({ success: true, authToken: authToken, isAdmin: user.isAdmin, email: user.email });
     } catch (error) {
         console.error("Error setting cookie:", error);
         return res.status(500).json({ error: 'Internal server error' });
@@ -142,10 +147,49 @@ router.patch('/addtocart/:email', async (req, res) => {
 router.get('/getUsers/:userEmail', async (req, res) => {
     try {
         const username = req.params.userEmail;
-        console.log(username);
         const user = await User.findOne({ email: username });
         // console.log(user);
         res.send(user)
+    } catch (error) {
+        console.error(error.message)
+        res.send("server error")
+    }
+})
+
+router.patch('/savecontactdetails/:id', async (req, res) => {
+    try {
+        const id = req.params.id;
+        const { name,
+            contactno,
+            address,
+            pincode,
+            city,
+            state,
+            isOrdered,
+        cartitems} = req.body
+        try {
+            const result = await User.updateOne({ _id: id }, {
+                $set: {
+                    name,
+                    contactno,
+                    address,
+                    pincode,
+                    city,
+                    state,
+                    isOrdered,
+                    cartitems
+                }
+            });
+            if (result.matchedCount === 0) {
+                res.status(404).json({ message: 'User found' });
+            } else {
+                res.status(200).json({ message: 'Details updated successfully', id: id });
+            }
+        } catch (error) {
+            console.error('Error updating document:', error);
+            res.status(500).json({ message: 'Internal Server Error' });
+        }
+        // res.send(user)
     } catch (error) {
         console.error(error.message)
         res.send("server error")
@@ -189,5 +233,14 @@ router.get('/demodemo', (req, res) => {
     res.cookie("name", "hemang");
     res.send("<h1>hello</h1>");
 });
+
+
+router.get('/getOrders', (req, res) => {
+    try {
+        res.send(global.Orders);
+    } catch (error) {
+        console.log(error);
+    }
+})
 
 module.exports = router;

@@ -10,7 +10,7 @@ app.use(express.json())
 app.use(cors({ 
     origin: 'http://localhost:3000', 
     credentials: true, 
-    methods: ["GET", "POST", "PATCH"], 
+    methods: ["GET", "POST", "PATCH", "DELETE"], 
     allowedHeaders: ["Origin", "X-Requested-With", "Content-Type", "Accept", "Authorization"], 
 }));
 app.use(cookieParser());
@@ -74,7 +74,7 @@ async function fetchData() {
         //         }
         //     })
         // });
-        const collection = mongoose.connection.client.db().collection('MainData');
+        const collection = mongoose.connection.client.db().collection('maindataschemas');
         const data = await collection.find().toArray();
 
         const fashioncategory = await mongoose.connection.client.db().collection('categoryschemas')
@@ -84,14 +84,18 @@ async function fetchData() {
         const testimonialData = await testData.find().toArray();
 
         const userdata = await mongoose.connection.client.db().collection('useranddatas')
-        const userData = await testData.find().toArray();
+        const userData = await userdata.find().toArray();
 
+        const order = await mongoose.connection.client.db().collection('adminorders')
+        const adminorders = await order.find().toArray();
+        
 
         if (data) {
             global.Bags = data;
             global.Category = catData;
             global.testimonial = testimonialData;
             global.User = userData;
+            global.Orders = adminorders
 
         } else {
             console.log("No data found");
@@ -115,6 +119,8 @@ app.use('/api', require("./Routes/detailcategory"))
 app.use('/api', require("./Routes/oneItem"))
 app.use('/api', require("./Routes/Google")) 
 app.use('/api', require("./Routes/adminRoutes"))
+app.use('/api', require("./Routes/DisplayData"))
+app.use('/api', require("./Routes/RoutesAdmin"))
 
 app.listen(PORT, () => {
     console.log(`app listening on port ${PORT}`)

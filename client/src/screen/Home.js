@@ -22,6 +22,8 @@ import { Link, useNavigate } from 'react-router-dom'
 import DetailCategory from './DetailCategory'
 import ImageSlider from '../components/ImageSlider'
 import ContactUs from '../components/ContactUs'
+import ExploreMore from '../components/ExploreMore'
+import { AnimatedOnScroll } from "react-animated-css-onscroll";
 
 
 export default function Home() {
@@ -148,113 +150,131 @@ export default function Home() {
 
 
         {/* Category Scrollmenu */}
-        <div className='scrollmenu'>
-          {
-            cat != []
-              ? cat.map(catdata => {
-                return (
-                  <div className='col' >
-                    <div onClick={() => navigate('/' + catdata._id)} key={catdata._id} className='m-3'>
-                      <div className='d-flex justify-content-center align-items-center rounded-circle col'>
-                        <img src={catdata.image} className='rounded-circle' alt='...' style={{ height: "150px", width: "150px" }} />
-                      </div>
-                      <div className='d-flex justify-content-center align-items-center fs-4 fw-bold'>
-                        <p style={{ textDecoration: "none", color: "#193046" }}>{catdata.categoryname}</p>
+        <AnimatedOnScroll animationIn="bounceInLeft">
+          <div className='scrollmenu mt-2' children="bounceInLeft">
+            {
+              cat != []
+                ? cat.map(catdata => {
+                  return (
+                    <div className='col' >
+                      <div onClick={() => navigate('/' + catdata._id)} key={catdata._id} className='m-3'>
+                        <div className='d-flex justify-content-center align-items-center rounded-circle col'>
+                          <img src={catdata.image} className='rounded-circle' alt='...' style={{ height: "150px", width: "150px" }} />
+                        </div>
+                        <div className='d-flex justify-content-center align-items-center fs-4 fw-bold'>
+                          <p style={{ textDecoration: "none", color: "#193046" }}>{catdata.categoryname}</p>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                )
-              }) : <div>'''''''</div>
-          }
-        </div>
+                  )
+                }) : <div>'''''''</div>
+            }
+          </div>
+        </AnimatedOnScroll>
+
 
         {/* trend */}
-        <div className=' w-100 trend-container'>
-          <ImageSlider images={images} />
-        </div>
+        <AnimatedOnScroll duration='5000' animationIn="bounceInRight">
+          <div id='gallery' className=' w-100 trend-container my-5' children="bounceInRight">
+            <ImageSlider images={images} />
+          </div>
+        </AnimatedOnScroll>
+
 
         {/* YouTube video */}
+        <AnimatedOnScroll duration={20} animationIn="fadeIn">
+          {/* <div className='my-5'> */}
+          <ExploreMore children="fadeIn" />
+          {/* </div> */}
+        </AnimatedOnScroll>
+
+
 
         {/* testimonial */}
-        <div className='w-100 row' style={{ marginTop: "100px" }} id='testimonial'>
-          <div style={{ color: "#202f5a", marginRight: "100px", borderLeft: "10px solid #202f5a" }} className='col m-3 ps-5'>
-            <h6 className='fw-bold' style={{ letterSpacing: "1px", wordSpacing: "2px" }}>OUR HAPPY CUSTOMERS</h6>
-            <h1 style={{ letterSpacing: "2px", wordSpacing: "5px" }}>What our <span style={{ fontWeight: "600" }}>clients</span></h1>
-            <h1 style={{ fontWeight: "600", letterSpacing: "2px", wordSpacing: "5px" }}><span>says</span> about our work</h1>
-          </div>
-          <div style={{ color: "#202f5a" }} className='col mx-5 m-3'>
-            <div id="carouselExampleControls" className="carousel slide" data-bs-ride="carousel" >
-              <div class="carousel-inner px-5 py-2" style={{ height: "300px" }}>
-                <div class="carousel-item ctitem active" >
-                  <div className='row'>
-                    <div className='col d-flex' >
-                      <h2 style={{ fontWeight: "bold", textAlign: "center" }} >Grisha Desai</h2>
-                      <i class="fa fa-quote-right ms-auto fs-1"></i>
-                    </div>
-                  </div>
-                  <div className='row'>
-                    <div className='col'>
-                      <h6 style={{ lineHeight: "30pt", color: "#6b6b6b", textAlign: "center", }} className='fontstyle'>We, Queen Garments, understand the ever-changing mind of a woman<br />
-                        and thus aim at providing a satisfactory and fully clothed closet that suits
-                      </h6>
-                    </div>
-                  </div>
-                </div>
-                <div>
-                  {
-                    test != []
-                      ? test.map((t) => {
-                        return (
-                          <>
-                            <div class="carousel-item ctitem" >
-                              {/* <h2 style={{ fontWeight: "bold" }}>{t.name}</h2>
-                              <h6 style={{ lineHeight: "30pt", color: "#6b6b6b", textAlign: "center" }} className='fontstyle'>{t.review}</h6> */}
-                              <div className='row'>
-                                <div className='col d-flex' >
-                                  <h2 style={{ fontWeight: "bold", textAlign: "center" }} >{t.name}</h2>
-                                  <i class="fa fa-quote-right ms-auto fs-1"></i>
-                                </div>
-                              </div>
-                              <div className='row'>
-                                <div className='col'>
-                                  <h6 style={{ lineHeight: "30pt", color: "#6b6b6b", textAlign: "center", }} className='fontstyle'>
-                                    {t.review}
-                                  </h6>
-                                </div>
-                              </div>
-                            </div>
-                          </>
-                        );
-                      })
-                      : <div>'.....'</div>
-                  }
-                </div>
-
-                <div className='carousel-item p-2 ctitem' style={{ textAlign: "center" }}>
-                  <div><h4 style={{ fontWeight: "bold" }}>Add Your Opinion</h4></div>
-                  <input type='text' placeholder='Name' className='form-control mb-3' name='name' value={review.name} onChange={onchange}></input>
-                  <div class="input-group mb-3">
-                    <textarea class="form-control" aria-label="With textarea" placeholder='Share Your Review' name='review' value={review.review} onChange={onchange} style={{ height: "50px" }}></textarea>
-                  </div>
-                  <button className='btn btn-secondary' onClick={saveReview}>Submit</button>
-
-                </div>
-              </div>
-              <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon rounded-3" aria-hidden="true" style={{ backgroundColor: "#193046" }}></span>
-                <span class="visually-hidden">Previous</span>
-              </button>
-              <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-                <span class="carousel-control-next-icon rounded-3" aria-hidden="true" style={{ backgroundColor: "#193046" }}></span>
-                <span class="visually-hidden">Next</span>
-              </button>
+        <div className='row' style={{ marginTop: "100px" }} id='testimonial'>
+          <AnimatedOnScroll animationIn="bounceInLeft" className='col-5'>
+            <div children='bounceInLeft' style={{ color: "#202f5a", marginRight: "100px", borderLeft: "10px solid #202f5a" }} className=' m-3 ps-5'>
+              <h6 className='fw-bold' style={{ letterSpacing: "1px", wordSpacing: "2px" }}>OUR HAPPY CUSTOMERS</h6>
+              <h1 style={{ letterSpacing: "2px", wordSpacing: "5px" }}>What our <span style={{ fontWeight: "600" }}>clients</span></h1>
+              <h1 style={{ fontWeight: "600", letterSpacing: "2px", wordSpacing: "5px" }}><span>says</span> about our work</h1>
             </div>
-          </div>
+          </AnimatedOnScroll>
+          <AnimatedOnScroll animationIn="bounceInRight" className='col-6'>
+            <div children='bounceInRight' style={{ color: "#202f5a" }} className=' m-3'>
+              <div id="carouselExampleControls" className="carousel slide" data-bs-ride="carousel" >
+                <div class="carousel-inner px-5 py-2" style={{ height: "300px" }}>
+                  <div class="carousel-item ctitem active" >
+                    <div className='row'>
+                      <div className='col d-flex' >
+                        <h2 style={{ fontWeight: "bold", textAlign: "center" }} >Grisha Desai</h2>
+                        <i class="fa fa-quote-right ms-auto fs-1"></i>
+                      </div>
+                    </div>
+                    <div className='row'>
+                      <div className='col'>
+                        <h6 style={{ lineHeight: "30pt", color: "#6b6b6b", textAlign: "center", }} className='fontstyle'>We, Queen Garments, understand the ever-changing mind of a woman<br />
+                          and thus aim at providing a satisfactory and fully clothed closet that suits
+                        </h6>
+                      </div>
+                    </div>
+                  </div>
+                  <div>
+                    {
+                      test != []
+                        ? test.map((t) => {
+                          return (
+                            <>
+                              <div class="carousel-item ctitem" >
+                                {/* <h2 style={{ fontWeight: "bold" }}>{t.name}</h2>
+                              <h6 style={{ lineHeight: "30pt", color: "#6b6b6b", textAlign: "center" }} className='fontstyle'>{t.review}</h6> */}
+                                <div className='row'>
+                                  <div className='col d-flex' >
+                                    <h2 style={{ fontWeight: "bold", textAlign: "center" }} >{t.name}</h2>
+                                    <i class="fa fa-quote-right ms-auto fs-1"></i>
+                                  </div>
+                                </div>
+                                <div className='row'>
+                                  <div className='col'>
+                                    <h6 style={{ lineHeight: "30pt", color: "#6b6b6b", textAlign: "center", }} className='fontstyle'>
+                                      {t.review}
+                                    </h6>
+                                  </div>
+                                </div>
+                              </div>
+                            </>
+                          );
+                        })
+                        : <div>'.....'</div>
+                    }
+                  </div>
+
+                  <div className='carousel-item p-2 ctitem' style={{ textAlign: "center" }}>
+                    <div><h4 style={{ fontWeight: "bold" }}>Add Your Opinion</h4></div>
+                    <input type='text' placeholder='Name' className='form-control mb-3' name='name' value={review.name} onChange={onchange}></input>
+                    <div class="input-group mb-3">
+                      <textarea class="form-control" aria-label="With textarea" placeholder='Share Your Review' name='review' value={review.review} onChange={onchange} style={{ height: "50px" }}></textarea>
+                    </div>
+                    <button className='btn btn-secondary' onClick={saveReview}>Submit</button>
+
+                  </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon rounded-3" aria-hidden="true" style={{ backgroundColor: "#193046" }}></span>
+                  <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                  <span class="carousel-control-next-icon rounded-3" aria-hidden="true" style={{ backgroundColor: "#193046" }}></span>
+                  <span class="visually-hidden">Next</span>
+                </button>
+              </div>
+            </div>
+          </AnimatedOnScroll>
+
         </div>
 
 
         {/* Contact Us */}
-        <div className='my-3 w-100' style={{ float: "right" }}>
+        <div id='contactus' className='my-3 w-100' style={{ float: "right" }}>
           <ContactUs />
         </div>
 

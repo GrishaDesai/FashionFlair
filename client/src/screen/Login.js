@@ -1,5 +1,7 @@
 import React from 'react'
 import { useState } from 'react';
+import { UseDispatch, useDispatch, useSelector } from 'react-redux';
+import { signInSuccess } from '../redux/user/userSlice';
 import { Link, useNavigate } from 'react-router-dom'
 import './login.css'
 import Navbar from '../components/Navbar'
@@ -9,6 +11,7 @@ import OAuth from '../components/OAuth';
 export default function Login() {
 
   let navigate = useNavigate();
+  const dispatch = useDispatch();
   const [credentials, setCredentials] = useState({ email: "", password: "" });
 
   const handleSubmit = async (e) => {
@@ -36,11 +39,16 @@ export default function Login() {
       } else {
         const isAdmin = json.isAdmin;
         const email = json.email;
-        localStorage.setItem("email",email)
-        localStorage.setItem("isAdmin",isAdmin)
+        localStorage.setItem("email", email)
+        localStorage.setItem("isAdmin", isAdmin)
         localStorage.setItem("authToken", json.authToken);
+        dispatch(signInSuccess(json));
         alert("Login Successful");
-        navigate("/home");
+        if (json.isAdmin === true) {
+          navigate('/admin-home')
+        } else {
+          navigate('/home')
+        }
       }
     } catch (error) {
       console.error("Error during login:", error);
