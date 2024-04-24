@@ -16,18 +16,35 @@ export default function GetAllCustomerReview() {
   useEffect(() => {
     GetCategory()
   }, [])
+
+  const displayTable = review.map((d) => {
+    return (
+      <>
+        <tr className=''>
+          <th>{d.name}</th>
+          <th>{d.review}</th>
+          {/* <th>
+            <i class="fa fa-edit mx-3" onClick={() => navigate(`/edit-product/${d._id}`)}></i>
+            <i class="fa fa-trash" aria-hidden="true" onClick={() => handleDelete(d._id)}></i>
+          </th> */}
+        </tr>
+      </>
+    )
+  })
+
   return (
     <div>
-      {
-        review.map((m) => {
-          return (
-            <>
-              <h1>{m.name}</h1>
-              <h4>{m.review}</h4>
-            </>
-          )
-        })
-      }
+      <table style={{ width: "100%" }}>
+        <thead style={{ backgroundColor: "#153656", color: "#fff" }}>
+          <tr>
+            <th>Name</th>
+            <th>Review</th>
+          </tr>
+        </thead>
+        <tbody style={{ backgroundColor: "#9dc9f4" }}>
+          {displayTable}
+        </tbody>
+      </table>
     </div>
   )
 }

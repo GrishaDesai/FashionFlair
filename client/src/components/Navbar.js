@@ -39,7 +39,7 @@ export default function Navbar() {
               </div>
               <div>
                 <Link to='/login'>
-                  <i class='fa fa-sign-in" fs-3 mx-3' style={{ fontWeight: "bold", color: "#1D4265" }}></i>
+                  <i class='fa fa-sign-in fs-2 mx-3' style={{ fontWeight: "bold", color: "#1D4265" }}></i>
                 </Link>
               </div>
             </div>

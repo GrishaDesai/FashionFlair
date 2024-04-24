@@ -151,7 +151,7 @@ export default function Home() {
 
         {/* Category Scrollmenu */}
         <AnimatedOnScroll animationIn="bounceInLeft">
-          <div className='scrollmenu mt-2' children="bounceInLeft">
+          <div className='scrollmenu mt-4' children="bounceInLeft">
             {
               cat != []
                 ? cat.map(catdata => {
@@ -174,8 +174,8 @@ export default function Home() {
 
 
         {/* trend */}
-        <AnimatedOnScroll duration='5000' animationIn="bounceInRight">
-          <div id='gallery' className=' w-100 trend-container my-5' children="bounceInRight">
+        <AnimatedOnScroll duration='5000' animationIn="fadeInDownBig">
+          <div id='gallery' className=' w-100 trend-container my-5' children="fadeInDownBig">
             <ImageSlider images={images} />
           </div>
         </AnimatedOnScroll>

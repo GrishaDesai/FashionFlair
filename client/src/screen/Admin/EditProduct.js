@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 export default function EditProduct() {
 
@@ -11,6 +11,7 @@ export default function EditProduct() {
     const [sizeString, SetSizeString] = useState(' ');
     const [size, setSize] = useState([]);
     const params = useParams();
+    const navigate = useNavigate();
 
     const fetchedData = async () => {
         const id = params.productId;
@@ -95,6 +96,7 @@ export default function EditProduct() {
             console.log(json);
             if (response.status === 200) {
                 alert("Product edited Successfully")
+                navigate('/admin-home')
             } else {
                 alert("Enter Credentials Properly")
             }
@@ -106,10 +108,10 @@ export default function EditProduct() {
         <div className='addProductContainer'>
             <div className='addProductSubContainer'>
                 <div className='addProductTitle'>
-                    <h2>Add Product</h2>
+                    <h2 className='fw-bold mb-3' style={{ color: "#173451" }}>Edit Product</h2>
                 </div>
                 <div className='container'>
-                    <div className='row mb-2'>
+                    <div className='row mb-3'>
                         {/* <button onClick={() => console.log(Product)}>Credentials</button> */}
                         <div className='col'>
                             <label className='addProductlable'>Name: </label>
@@ -120,7 +122,7 @@ export default function EditProduct() {
                             <input type='text' name='company_name' className='inputtag' value={Product.company_name} onChange={onchange}></input>
                         </div>
                     </div>
-                    <div className='row mb-2'>
+                    <div className='row mb-3'>
                         <div className='col'>
                             <label className='addProductlable'>Category: </label>
                             {/* <div class="dropdown">
@@ -139,7 +141,7 @@ export default function EditProduct() {
                             <label className='addProductlable'>Price: </label>
                             <input type='text' name='price' className='inputtag' value={Product.price} onChange={onchange}></input>
                         </div>
-                        <div className='col-6'>
+                        <div className='col-4'>
                             <label className='addProductlable'>Sale Price: </label>
                             <input type='text' name='sale_price' className='inputtag' value={Product.sale_price} onChange={onchange}></input>
                         </div>
@@ -148,7 +150,7 @@ export default function EditProduct() {
                         {
                             keys.map((m) => {
                                 return (
-                                    <div className='col-6'>
+                                    <div className='col-6 mb-3'>
                                         <label className='addProductlable'>{m} : </label>
                                         <input name={m} type='text' className='inputtag' value={info[m]} onChange={(event, m) => handleChange(event, m)}></input>
                                     </div>
@@ -158,7 +160,7 @@ export default function EditProduct() {
                     </div>
                     <div className='row'>
                         <div className='col'>
-                            <label className='addProductlable'>Sizes: </label>
+                            <label className='addProductlable mb-3'>Sizes: </label>
                             <input
                                 type='text'
                                 name='sizes'
@@ -170,26 +172,26 @@ export default function EditProduct() {
                     </div>
                     <div className='row'>
                         <div className='col'>
-                            <label className='addProductlable'>Pack Contains: </label>
+                            <label className='addProductlable mb-3'>Pack Contains: </label>
                             <input type='text' name='packContains' className='inputtag' value={Product.packContains} onChange={onchange}></input>
                         </div>
                     </div>
                     <div className='row'>
                         <div className='col'>
-                            <label className='addProductlable'>Care Instructions: </label>
+                            <label className='addProductlable mb-3'>Care Instructions: </label>
                             <input type='text' name='careinstructions' className='inputtag' value={Product.careinstructions} onChange={onchange}></input>
                         </div>
                     </div>
                     <div className='row'>
                         <div className='col'>
-                            <label className='addProductlable'>Image: </label>
+                            <label className='addProductlable mb-3'>Image: </label>
                             <input type='text' name='image' className='inputtag' value={Product.image} onChange={onchange}></input>
                         </div>
                     </div>
                 </div>
-                <div>
+                <div className='mt-3 fs-5 ' style={{ display: "flex", justifyContent: "space-evenly" }}>
                     {/* <button onClick={() => console.log(credentials)}>credentials</button> */}
-                    <button onClick={handleSubmit}>Submit</button>
+                    <button className='button px-3 py-1 rounded-3 text-light' onClick={handleSubmit}>Submit</button>
                 </div>
             </div>
         </div>

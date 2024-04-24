@@ -25,6 +25,7 @@ import EditProduct from './screen/Admin/EditProduct.js';
 import PrivateUserRoute from './components/PrivateUserRoute.js';
 import GetUsers from './screen/Admin/GetUsers.js';
 import Address from './screen/Address.js';
+import EditCategory from './screen/Admin/EditCategory.js';
 
 function App() {
   return (
@@ -51,6 +52,7 @@ function App() {
             <Route path='/create-product' element={<CreateProduct />} />
             <Route path='/create-category' element={<CreateCategory />} />
             <Route path='/edit-product/:productId' element={<EditProduct/>} />
+            <Route path='/edit-category/:catId' element={<EditCategory />} />
           </Route>
         </Routes>
       </div>

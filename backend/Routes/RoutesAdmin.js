@@ -149,7 +149,35 @@ router.delete('/deleteOrder/:id', async (req, res, next) => {
     if (!deletedDocument) {
         return res.status(404).json({ error: 'Document not found' });
     }
-    res.status(200).json({ message: 'Document deleted successfully' });
+    const allOrder = await AdminOrder.find();
+    res.status(200).json(allOrder);
+})
+
+router.patch('/editCategory/:id', async (req, res, next) => {
+    const id = req.params.id;
+    console.log(id);
+    const { 
+        categoryname,
+        image,
+        info } = req.body
+
+    try {
+        const result = await CategorySchema.updateOne({ _id: id }, {
+            $set:{
+                categoryname,
+                image,
+                info
+            }
+        });
+        if (result.matchedCount === 0) {
+            res.status(404).json({ message: 'Document not found' });
+        } else {
+            res.status(200).json({ message: 'Document updated successfully', id: id });
+        }
+    } catch (error) {
+        console.error('Error updating document:', error);
+        res.status(500).json({ message: 'Internal Server Error' });
+    }
 })
 
 module.exports = router;

@@ -5,8 +5,7 @@ const { body, validationResult } = require('express-validator')
 const bcrypt = require('bcryptjs')
 const cook = require("cookie-parser");
 const jwt = require('jsonwebtoken')
-// const { wait } = require('@testing-library/user-event/dist/utils')
-// const { json } = require('react-router-dom')
+const Order = require('../models/AdminOrder')
 
 
 jwtSecret = process.env.jwtSecret;
@@ -116,7 +115,7 @@ router.post("/loginuser", async (req, res) => {
 router.patch('/addtocart/:email', async (req, res) => {
     try {
         const username = req.params.email;
-        const { category, name, company_name, price, sale_price, image } = req.body;
+        const { category, name, company_name, price, sale_price, image, size } = req.body;
         // Find the user by ID
         const user = await User.findOne({ email: username });
 
@@ -131,7 +130,8 @@ router.patch('/addtocart/:email', async (req, res) => {
             company_name,
             price,
             sale_price,
-            image
+            image,
+            size
         });
 
         // Save the updated user
@@ -235,9 +235,10 @@ router.get('/demodemo', (req, res) => {
 });
 
 
-router.get('/getOrders', (req, res) => {
+router.get('/getOrders',async (req, res) => {
     try {
-        res.send(global.Orders);
+        const orders = await Order.find({})
+        res.send(orders);
     } catch (error) {
         console.log(error);
     }

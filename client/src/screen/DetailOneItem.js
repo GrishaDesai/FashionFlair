@@ -14,6 +14,7 @@ function DetailCategory() {
     const [maindata, setMaindata] = useState({ category: "", name: "", price: "", sale_price: "", company_name: "", rating: "", image: "", sizes: [], careinstructions: "", packContains: "", info: {} })
     const [keys, setKeys] = useState([])
     const [values, setValues] = useState([])
+    const [size, setSize] = useState('');
 
     useEffect(() => {
         const fetchedData = async () => {
@@ -23,14 +24,13 @@ function DetailCategory() {
                     'Content-Type': 'application/json'
                 }
             })
-            // console.log(param.id)
             response = await response.json();
             setMaindata(response)
             setKeys(Object.keys(response.info))
             setValues(Object.values(response.info))
         }
         fetchedData();
-    }, [param.id])
+    }, {})
 
 
     const handleAddToCart = async (e) => {
@@ -41,19 +41,24 @@ function DetailCategory() {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ name: maindata.name, category: maindata.category, company_name: maindata.company_name, price: maindata.price, sale_price: maindata.sale_price, image: maindata.image })
-        })  
+            body: JSON.stringify({ name: maindata.name, category: maindata.category, company_name: maindata.company_name, price: maindata.price, sale_price: maindata.sale_price, image: maindata.image, size: size })
+        })
         navigate('/cart')
+    }
+
+    const selectSize = (e) => {
+        // console.log(e);
+        setSize(e);
     }
 
     const sizes = maindata.sizes;
 
     const sizesMap = sizes.map((f) => {
         return (
-            <h5 className="mx-3" style={{ border: "1px solid grey", borderRadius: "20px", width: "50px", textAlign: "center" }}>{f}</h5>
+            <h5 className={f === size ? 'bg-secondary mx-3' : 'mx-3'} onClick={() => selectSize(f)} style={{ border: "1px solid grey", borderRadius: "20px", width: "50px", textAlign: "center" }}>{f}</h5>
         )
     })
-    console.log(sizes);
+    // console.log(sizes);
 
     // console.log(`from Detail : ${Data}`)
 

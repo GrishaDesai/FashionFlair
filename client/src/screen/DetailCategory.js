@@ -29,19 +29,17 @@ function DetailCategory() {
     }, [param.id])
 
     const handleAddToCart = async (e) => {
-        e.preventDefault();
+        // e.preventDefault();
         const email = localStorage.getItem("email");
         const response = await fetch(`http://localhost:5000/api/addtocart/${email}`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ name: Data.name, category: Data.category, company_name: Data.company_name, price: Data.price, sale_price: Data.sale_price, image: Data.image })
+            body: JSON.stringify({ name: e.name, category: e.category, company_name: e.company_name, price: e.price, sale_price: e.sale_price, image: e.image })
         })
         navigate('/cart')
     }
-    // console.log(`from Detail : ${Data}`)
-
     return (
         <>
             <Navbar />
@@ -62,7 +60,7 @@ function DetailCategory() {
                                                 <div style={{ float: "left", color: "#43505c", textDecoration: "line-through" }}><h6><i class="fa fa-inr" aria-hidden="true"></i>{data.sale_price}</h6></div>
                                                 <br />
                                                 <div className="">
-                                                    <button className="btn py-2 px-3 bg-dark text-light" style={{ border: "1px solid #8a8d8e" }} onClick={handleAddToCart}><i class="fa fa-heart-o"></i><span className="me-2"></span>
+                                                    <button className="btn py-2 px-3 bg-dark text-light" style={{ border: "1px solid #8a8d8e" }} onClick={() => handleAddToCart(data)}><i class="fa fa-heart-o"></i><span className="me-2"></span>
                                                         Add to Bag
                                                     </button>
                                                 </div>

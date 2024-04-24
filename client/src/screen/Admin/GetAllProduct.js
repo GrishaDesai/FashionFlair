@@ -12,15 +12,16 @@ export default function GetAllProduct() {
 
     const GetCategory = async () => {
         let response = await fetch("http://localhost:5000/api/DisplayData", {
-            method: "GET",
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        });
+            method: "GET"
+        })
+        // .then(res => res.json()).then(res => {
+        //     setCat(res[1])
+        //     setProduct(res[0])
+        // });
         response = await response.json();
+        // console.log(response);
         setCat(response[1])
         setProduct(response[0])
-        // console.log("product", product);
     }
 
     useEffect(() => {
@@ -36,6 +37,8 @@ export default function GetAllProduct() {
             const data = await response.json();
             if (response.status === 200) {
                 alert('Document deleted Successfully')
+                window.location.reload();
+                // navigate('/admin-home')
             }
             console.log(data);
         } catch (error) {
@@ -43,9 +46,29 @@ export default function GetAllProduct() {
         }
     }
 
+    const displayTable = product.map((d) => {
+        return (
+            <>
+                <tr className=''>
+                    <th>{d.category}</th>
+                    <th>{d.name}</th>
+                    <th>{d.price}</th>
+                    <th>{d.sale_price}</th>
+                    <th>{d.company_name}</th>
+                    <th>
+                        <i class="fa fa-edit mx-3" onClick={() => navigate(`/edit-product/${d._id}`)}></i>
+                    </th>
+                    <th>
+                        <i class="fa fa-trash mx-3" aria-hidden="true" onClick={() => handleDelete(d._id)}></i>
+                    </th>
+                </tr>
+            </>
+        )
+    })
+
     return (
         <div>
-            {
+            {/* {
                 cat.map((m) => {
                     return (
                         <>
@@ -65,7 +88,23 @@ export default function GetAllProduct() {
                         </>
                     )
                 })
-            }
+            } */}
+            <table style={{ width: "100%" }}>
+                <thead style={{ backgroundColor: "#153656", color: "#fff" }}>
+                    <tr>
+                        <th style={{ width: "15%" }}>Category</th>
+                        <th style={{ width: "30%" }}>Name</th>
+                        <th>Price</th>
+                        <th>Sale Price</th>
+                        <th>Company</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+                <tbody style={{ backgroundColor: "#9dc9f4" }}>
+                    {displayTable}
+                </tbody>
+            </table>
         </div>
     )
 }

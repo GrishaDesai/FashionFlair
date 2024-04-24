@@ -3,6 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useEffect, useState } from "react";
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
+import cartimg from '../Images/emptycart.webp'
 
 export default function Cart() {
 
@@ -65,28 +66,15 @@ export default function Cart() {
     return total + price.sale_price;
   }
 
-  // const demo = () => {
-  //   swal({
-  //     title: "Are you sure?",
-  //     text: "You will not be able to recover this imaginary file!",
-  //     type: "warning",
-  //     showCancelButton: true,
-  //     confirmButtonColor: '#DD6B55',
-  //     confirmButtonText: 'Yes, delete it!',
-  //     closeOnConfirm: false,
-  //     //closeOnCancel: false
-  //   },
-  //      swal = () => {
-  //       swal("Deleted!", "Your imaginary file has been deleted!", "success");
-  //     });
-  // };
-
-
-
-
 
   if (Data.cartitems.length === 0) {
-    return (<div style={{ display: "flex", justifyContent: "center" }}>Opps! Your Cart is Empty</div>)
+    return (
+      <>
+        <div style={{ display: "flex", justifyContent: "center", color: "#4fb4f3", fontWeight: "bold", fontSize: "2em", marginBlock:"30px" }}>Opps! Your Cart is Empty</div>
+        <div className='d-flex justify-content-center'><img src={cartimg} /></div>
+
+      </>
+    )
   } else {
     return (
       <div className='m-auto' style={{ width: "80%" }}>
@@ -107,7 +95,7 @@ export default function Cart() {
                       <div className='fs-5'>{f.name}</div>
                       <div className='mb-1' style={{ fontSize: "1.1em", color: "#353f4f" }}><i class="fa fa-inr me-1" aria-hidden="true"></i>{f.price}</div>
                       <div className='mb-2' style={{ fontSize: "1.1em", color: "#353f4f" }}>All issue easy returns allowed</div>
-                      <div className='d-flex'><h6 className='me-3' style={{ fontSize: "1.1em", color: "#353f4f" }}>Size: S</h6><h6 style={{ fontSize: "1.1em", color: "#353f4f" }}>Qty: 1</h6></div>
+                      <div className='d-flex'><h6 className='me-3' style={{ fontSize: "1.1em", color: "#353f4f" }}>Size: {f.size}</h6><h6 style={{ fontSize: "1.1em", color: "#353f4f" }}>Qty: 1</h6></div>
                       {/* <div onClick={()=>handleRemove(f._id)}><h5 className='fw-bold'><i class="fa fa-close me-1" aria-hidden="true"></i>REMOVE</h5></div> */}
                       <button className='btn fw-bold' onClick={() => handleDelete(f._id)}><i class="fa fa-close me-2" aria-hidden="true"></i>REMOVE</button>
                     </div>

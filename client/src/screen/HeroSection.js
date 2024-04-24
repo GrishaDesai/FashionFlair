@@ -21,11 +21,11 @@ export default function HeroSection() {
                 <img src={hero} alt='...' className='shoppinggirl' />
                 <div className='d-flex justify-content-center heronavbar'>
                     <Link className='fs-5 mt-4' to='/home' style={{ textDecoration: "none", color: "#193046", marginRight: "50px" }}>Home</Link>
-                    <Link className='fs-5 mx-5 mt-4' to='/' style={{ textDecoration: "none", color: "#193046" }}>About Us</Link>
+                    <Link className='fs-5 mx-5 mt-4' to='/about' style={{ textDecoration: "none", color: "#193046" }}>About Us</Link>
                     <h5 className='ms-5 mt-4' style={{ fontFamily: "Playball", color: "#1D4265", fontWeight: "bold", fontSize: "45px" }}>Fashion Flair</h5>
                     <img className='me-5' src={butterfly} alt='...' style={{ width: "100px", height: "100px" }} />
                     <Link className='fs-5 mx-5 mt-4' to='/' style={{ textDecoration: "none", color: "#193046" }}>Contact Us</Link>
-                    <Link className='btn fs-5 mx-5 mt-3 signupbutton' to='/' style={{ textDecoration: "none", color: "#ffffff", width: "100px", height: "45px" }}>Sign Up</Link>
+                    <Link className='btn fs-5 mx-5 mt-3 signupbutton' to='/createuser' style={{ textDecoration: "none", color: "#ffffff", width: "100px", height: "45px" }}>Sign Up</Link>
                 </div>
                 <div style={{ marginTop: "120px", marginLeft: "50px" }}>
                     <h2 className='fs-1' style={{ fontFamily: "Gowun Dodum", fontWeight: "bolder", color: "#2E5F8E" }}>C r e a t e<span className='me-5'></span>Y o u r<span className='me-5'></span>O w n</h2>
