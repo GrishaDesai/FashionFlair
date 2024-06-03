@@ -35,9 +35,10 @@ export default function CreateCategory() {
         }),
       }
       ).then(res => res.json());
+      console.log(response);
       // const json = await response.json();
       // console.log(json);
-      if (response.status === 200) {
+      if (response === 'Product added Successfully') {
         alert("Category added Successfully")
         navigate('/admin-home')
       } else {

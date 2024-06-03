@@ -23,7 +23,7 @@ export default function EditCategory() {
 
     useEffect(() => {
         GetCategory()
-    }, [])
+    }, {})
 
     const addValue = (newValue) => {
         setinfo(prev => [...prev, newValue]);
@@ -87,7 +87,7 @@ export default function EditCategory() {
                         </div>
                         <div className='mb-3'>
                             <input id='infoInput' className='text-dark me-3'></input>
-                            <button className='button p-1 text-light me-3' onClick={(e) => addValue(document.getElementById('infoInput').value)}>Add Field</button>
+                            <button className='button p-1 text-light me-3' onClick={() => addValue(document.getElementById('infoInput').value)}>Add Field</button>
                             <button className='button p-1 text-light' onClick={() => console.log(info)}>value</button>
                         </div>
                         <div className='row'>
