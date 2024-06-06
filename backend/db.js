@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
 
-const mongoURI = 'mongodb://localhost:27017/FashionFlair'
+const mongoURI = process.env.MongoUrl
 
-const mongoDB = ()=>{
+const mongoDB = () => {
     mongoose.connect(mongoURI, () => {
         console.log('connected successfully')
     })

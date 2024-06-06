@@ -1,8 +1,8 @@
 import React from 'react'
 import { useNavigate, useParams } from 'react-router-dom';
 import { useEffect, useState } from "react";
-import Popup from 'reactjs-popup';
-import 'reactjs-popup/dist/index.css';
+// import Popup from 'reactjs-popup';
+// import 'reactjs-popup/dist/index.css';
 import cartimg from '../Images/emptycart.webp'
 
 export default function Cart() {
@@ -32,7 +32,7 @@ export default function Cart() {
       })
       response = await response.json();
       setData(response)
-      console.log(Data.cartitems);
+      // console.log(Data.cartitems);
     }
     fetchedData();
   }, {});
