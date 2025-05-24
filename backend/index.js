@@ -96,6 +96,8 @@ async function fetchData() {
             global.testimonial = testimonialData;
             global.User = userData;
             global.Orders = adminorders
+            console.log(catData);
+            
 
         } else {
             console.log("No data found");

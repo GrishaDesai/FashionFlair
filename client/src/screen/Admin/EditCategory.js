@@ -9,7 +9,7 @@ export default function EditCategory() {
 
     const GetCategory = async () => {
         console.log(params.catId);
-        let response = await fetch(`http://localhost:5000/api/detailcategory/${params.catId}`, {
+        let response = await fetch(`https://fashionflair.onrender.com/api/detailcategory/${params.catId}`, {
             method: "GET",
             headers: {
                 'Content-Type': 'application/json'
@@ -40,7 +40,7 @@ export default function EditCategory() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch(`http://localhost:5000/api/editCategory/${cat._id}`, {
+            const response = await fetch(`https://fashionflair.onrender.com/api/editCategory/${cat._id}`, {
                 method: "PATCH",
                 headers: {
                     "Content-Type": "application/json",

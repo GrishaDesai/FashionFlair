@@ -6,7 +6,7 @@ export default function Getorders() {
     const [order, setorder] = useState([]);
     const navigate = useNavigate();
     const GetCategory = async () => {
-        let response = await fetch("http://localhost:5000/api/getOrders", {
+        let response = await fetch("https://fashionflair.onrender.com/api/getOrders", {
             method: "GET",
             headers: {
                 'Content-Type': 'application/json'
@@ -22,7 +22,7 @@ export default function Getorders() {
     const handledelete = async (id) => {
         try {
             console.log(id);
-            const response = await fetch(`http://localhost:5000/api/deleteOrder/${id}`, {
+            const response = await fetch(`https://fashionflair.onrender.com/api/deleteOrder/${id}`, {
                 method: 'DELETE'
             }).then(res => res.json()).then(res => setorder(res));
             // const data = await response.json();

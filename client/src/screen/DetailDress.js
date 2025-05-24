@@ -14,7 +14,7 @@ function DetailCategory() {
 
     useEffect(() => {
         const fetchedData = async () => {
-            let response = await fetch("http://localhost:5000/api/onedress/65b11a1f3c2d1ebacad4799b", {
+            let response = await fetch("https://fashionflair.onrender.com/api/onedress/65b11a1f3c2d1ebacad4799b", {
                 method: "GET",
                 headers: {
                     'Content-Type': 'application/json'

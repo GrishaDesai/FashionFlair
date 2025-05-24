@@ -18,8 +18,7 @@ import g2 from '../Images/gallery2.jpeg'
 import g3 from '../Images/gallery3.jpeg'
 import as1 from '../Images/aboutsmall1.png'
 import as2 from '../Images/aboutsmall2.png'
-import { Link, useNavigate } from 'react-router-dom'
-import DetailCategory from './DetailCategory'
+import { useNavigate } from 'react-router-dom'
 import ImageSlider from '../components/ImageSlider'
 import ContactUs from '../components/ContactUs'
 import ExploreMore from '../components/ExploreMore'
@@ -46,7 +45,7 @@ export default function Home() {
   // }
 
   const loadData = async () => {
-    let response = await fetch("http://localhost:5000/api/GetCategory", {
+    let response = await fetch("https://fashionflair.onrender.com/api/GetCategory", {
       method: "GET",
       headers: {
         'Content-Type': 'application/json'
@@ -55,6 +54,10 @@ export default function Home() {
     response = await response.json();
     setCat(response[0])
     settest(response[1])
+    console.log(cat);
+    console.log(test);
+
+
   }
 
   useEffect(() => {
@@ -65,7 +68,7 @@ export default function Home() {
 
   const saveReview = async (e) => {
     e.preventDefault();
-    const response = await fetch("http://localhost:5000/api/CreateTestimonial", {
+    const response = await fetch("https://fashionflair.onrender.com/api/CreateTestimonial", {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

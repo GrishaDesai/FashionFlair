@@ -16,7 +16,7 @@ export default function EditProduct() {
     const fetchedData = async () => {
         const id = params.productId;
         console.log(id);
-        let response = await fetch(`http://localhost:5000/api/itemdisplay/${id}`, {
+        let response = await fetch(`https://fashionflair.onrender.com/api/itemdisplay/${id}`, {
             method: "GET",
             headers: {
                 'Content-Type': 'application/json'
@@ -73,7 +73,7 @@ export default function EditProduct() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch(`http://localhost:5000/api/editProduct/${Product._id}`, {
+            const response = await fetch(`https://fashionflair.onrender.com/api/editProduct/${Product._id}`, {
                 method: "PATCH",
                 headers: {
                     "Content-Type": "application/json",

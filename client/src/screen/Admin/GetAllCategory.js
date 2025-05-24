@@ -9,7 +9,7 @@ export default function GetAllCategory() {
     const navigate = useNavigate();
 
     const GetCategory = async () => {
-        let response = await fetch("http://localhost:5000/api/GetCategory", {
+        let response = await fetch("https://fashionflair.onrender.com/api/GetCategory", {
             method: "GET",
             headers: {
                 'Content-Type': 'application/json'
@@ -25,7 +25,7 @@ export default function GetAllCategory() {
     const handleDelete = async (id) => {
         try {
             console.log(id);
-            const response = await fetch(`http://localhost:5000/api/deleteCategory/${id}`, {
+            const response = await fetch(`https://fashionflair.onrender.com/api/deleteCategory/${id}`, {
                 method: 'DELETE'
             });
             const data = await response.json();

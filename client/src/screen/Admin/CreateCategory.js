@@ -23,7 +23,7 @@ export default function CreateCategory() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch("http://localhost:5000/api/createCategory", {
+      const response = await fetch("https://fashionflair.onrender.com/api/createCategory", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

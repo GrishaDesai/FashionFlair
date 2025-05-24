@@ -24,7 +24,7 @@ export default function Cart() {
 
   useEffect(() => {
     const fetchedData = async () => {
-      let response = await fetch(`http://localhost:5000/api/getUsers/${userEmail}`, {
+      let response = await fetch(`https://fashionflair.onrender.com/api/getUsers/${userEmail}`, {
         method: "GET",
         headers: {
           'Content-Type': 'application/json'
@@ -41,7 +41,7 @@ export default function Cart() {
     try {
       console.log(objectId, cartitems, objectToDelete);
 
-      const response = await fetch(`http://localhost:5000/api/deleteElement/${objectId}`, {
+      const response = await fetch(`https://fashionflair.onrender.com/api/deleteElement/${objectId}`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
@@ -70,7 +70,7 @@ export default function Cart() {
   if (Data.cartitems.length === 0) {
     return (
       <>
-        <div style={{ display: "flex", justifyContent: "center", color: "#4fb4f3", fontWeight: "bold", fontSize: "2em", marginBlock:"30px" }}>Opps! Your Cart is Empty</div>
+        <div style={{ display: "flex", justifyContent: "center", color: "#4fb4f3", fontWeight: "bold", fontSize: "2em", marginBlock: "30px" }}>Opps! Your Cart is Empty</div>
         <div className='d-flex justify-content-center'><img src={cartimg} /></div>
 
       </>

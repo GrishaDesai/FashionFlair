@@ -15,7 +15,7 @@ function DetailCategory() {
 
     useEffect(() => {
         const fetchedData = async () => {
-            let response = await fetch(`http://localhost:5000/api/detailcategory/${param.id}`, {
+            let response = await fetch(`https://fashionflair.onrender.com/api/detailcategory/${param.id}`, {
                 method: "GET",
                 headers: {
                     'Content-Type': 'application/json'
@@ -31,7 +31,7 @@ function DetailCategory() {
     const handleAddToCart = async (e) => {
         // e.preventDefault();
         const email = localStorage.getItem("email");
-        const response = await fetch(`http://localhost:5000/api/addtocart/${email}`, {
+        const response = await fetch(`https://fashionflair.onrender.com/api/addtocart/${email}`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json'

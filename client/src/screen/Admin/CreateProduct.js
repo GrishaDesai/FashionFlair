@@ -12,7 +12,7 @@ export default function CreateProduct() {
   // const [values, setValues] = useState([]);
 
   const fetchedData = async () => {
-    let response = await fetch("http://localhost:5000/api/GetCategory", {
+    let response = await fetch("https://fashionflair.onrender.com/api/GetCategory", {
       method: "GET",
       headers: {
         'Content-Type': 'application/json'
@@ -81,7 +81,7 @@ export default function CreateProduct() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch("http://localhost:5000/api/createProduct", {
+      const response = await fetch("https://fashionflair.onrender.com/api/createProduct", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

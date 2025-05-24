@@ -14,7 +14,7 @@ export default function OAuth() {
       const auth = getAuth(app);
 
       const result = await signInWithPopup(auth, provider)
-      const res = await fetch('http://localhost:5000/api/googlesignup', {
+      const res = await fetch('https://fashionflair.onrender.com/api/googlesignup', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

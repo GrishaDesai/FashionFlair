@@ -8,7 +8,7 @@ export default function Address() {
     const [user, setUser] = useState({});
     const navigate = useNavigate();
     const loadData = async () => {
-        let response = await fetch(`http://localhost:5000/api/getUsers/${currentUser.email}`, {
+        let response = await fetch(`https://fashionflair.onrender.com/api/getUsers/${currentUser.email}`, {
             method: "GET",
             headers: {
                 'Content-Type': 'application/json'
@@ -29,7 +29,7 @@ export default function Address() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response1 = await fetch(`http://localhost:5000/api/addOrder`, {
+            const response1 = await fetch(`https://fashionflair.onrender.com/api/addOrder`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -46,7 +46,7 @@ export default function Address() {
                 }),
             }
             );
-            const response = await fetch(`http://localhost:5000/api/savecontactdetails/${user._id}`, {
+            const response = await fetch(`https://fashionflair.onrender.com/api/savecontactdetails/${user._id}`, {
                 method: "PATCH",
                 headers: {
                     "Content-Type": "application/json",
@@ -59,11 +59,11 @@ export default function Address() {
                     city: user.city,
                     state: user.state,
                     isOrdered: true,
-                    cartitems:[]
+                    cartitems: []
                 }),
             }
             );
-            
+
             const json1 = await response1.json();
             const json = await response.json();
             console.log(json1);

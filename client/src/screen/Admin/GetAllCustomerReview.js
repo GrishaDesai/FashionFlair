@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 export default function GetAllCustomerReview() {
   const [review, setReview] = useState([]);
   const GetCategory = async () => {
-    let response = await fetch("http://localhost:5000/api/GetCategory", {
+    let response = await fetch("https://fashionflair.onrender.com/api/GetCategory", {
       method: "GET",
       headers: {
         'Content-Type': 'application/json'

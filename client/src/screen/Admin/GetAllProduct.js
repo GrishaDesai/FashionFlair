@@ -11,7 +11,7 @@ export default function GetAllProduct() {
     const [product, setProduct] = useState([]);
 
     const GetCategory = async () => {
-        let response = await fetch("http://localhost:5000/api/DisplayData", {
+        let response = await fetch("https://fashionflair.onrender.com/api/DisplayData", {
             method: "GET"
         })
         // .then(res => res.json()).then(res => {
@@ -31,7 +31,7 @@ export default function GetAllProduct() {
     const handleDelete = async (id) => {
         try {
             console.log(id);
-            const response = await fetch(`http://localhost:5000/api/deleteProduct/${id}`, {
+            const response = await fetch(`https://fashionflair.onrender.com/api/deleteProduct/${id}`, {
                 method: 'DELETE'
             });
             const data = await response.json();

@@ -7,7 +7,7 @@ router.get('/GetCategory',async (req, res) => {
     try {
         const category = await Category.find({})
         const testimonial = await Testimonial.find({})
-        console.log(category);
+        console.log("cat =>", category);
         res.send([global.Category, testimonial])
     } catch (error) {
         console.error(error.message)
