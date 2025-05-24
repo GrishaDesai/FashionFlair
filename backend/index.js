@@ -8,7 +8,7 @@ dotenv.config();
 
 app.use(express.json())
 app.use(cors({ 
-    origin: 'http://localhost:3000', 
+    origin: ['http://localhost:3000', 'https://fashionflair.onrender.com'],
     credentials: true, 
     methods: ["GET", "POST", "PATCH", "DELETE"], 
     allowedHeaders: ["Origin", "X-Requested-With", "Content-Type", "Accept", "Authorization"], 
